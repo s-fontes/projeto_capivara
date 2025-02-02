@@ -42,7 +42,13 @@ schema = pl.Schema(
         "modalidade": pl.String(),
         "unidade_compra": pl.String(),
         "licitacao_numero": pl.String(),
-        "informacao_complementar": pl.String()
+        "informacao_complementar": pl.String(),
+        "_links.self.href": pl.String(),
+        "_links.self.title": pl.String(),
+        "_links.licitacao.href": pl.String(),
+        "_links.licitacao.title": pl.String(),
+        "_links.uasg.href": pl.String(),
+        "_links.uasg.title": pl.String()
     }
 )
 
