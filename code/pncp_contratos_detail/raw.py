@@ -75,7 +75,7 @@ def get_success(data: list[dict]) -> list[dict]:
     )
 
 
-def save_page(data: dict, filename) -> None:
+def save_page(data: list[dict], filename) -> None:
     success = get_success(data)
     errors = get_erros(data)
     len_errors = len(errors)
