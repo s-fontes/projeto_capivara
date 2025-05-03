@@ -1,0 +1,12 @@
+from code.flags.doador_candidato import main as doador_candidato
+from code.flags.doador_partido import main as doador_partido
+from code.flags.inidonea_cgu import main as inidonea_cgu
+from code.flags.inidonea_tcu import main as inidonea_tcu
+from code.flags.punidas_cgu import main as punidas_cgu
+from code.flags.servico_candidato import main as servico_candidato
+from code.flags.servico_partido import main as servico_partido
+from code.flags.socio_bolsa import main as socio_bolsa
+from code.flags.socio_doador_candidato import main as socio_doador_candidato
+from code.flags.socio_doador_partido import main as socio_doador_partido
+from code.flags.socio_politico import main as socio_politico
+from code.flags.dataset import main as dataset

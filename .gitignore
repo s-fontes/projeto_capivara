@@ -1,0 +1,6 @@
+.env
+.idea
+.git-credentials
+venv
+/data
+*.pyc
