@@ -3,4 +3,5 @@
 .git-credentials
 venv
 /data
+/logs
 *.pyc
