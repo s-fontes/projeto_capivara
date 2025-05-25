@@ -1,6 +1,6 @@
 # Projeto Capivara
 
-![plot](./capivara.jpg)
+![plot](./files/capivara.jpg)
 
 ## Introduction
 

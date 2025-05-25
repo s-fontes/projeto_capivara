@@ -61,13 +61,13 @@ def extract_zip(zip_path: str) -> None:
 
 def main():
     logger.info("Starting extraction process")
-    actual_files = [
+    zip_files = [
         os.path.join(ZIP_FOLDER, filename)
         for filename in os.listdir(ZIP_FOLDER)
         if filename.endswith(".zip")
     ]
     with Pool(cpu_count()) as executor:
-        executor.map(extract_zip, actual_files)
+        executor.map(extract_zip, zip_files)
     logger.info("Extraction process completed")
 
 
