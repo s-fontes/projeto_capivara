@@ -5,7 +5,7 @@ from logging import getLogger
 logger = getLogger()
 
 DATABASE_PATH = "./database.db"
-QUERIES_PATH = "./codes/sql"
+QUERIES_PATH = "./sql"
 DUCKDB_SWAP = "./tmp/duckdb_swap"
 
 conn = duckdb.connect(database=DATABASE_PATH, read_only=False)
@@ -15,6 +15,11 @@ def delete_swap_directory():
     if os.path.exists(DUCKDB_SWAP):
         try:
             logger.info("Deleting swap directory...")
+            for root, dirs, files in os.walk(DUCKDB_SWAP, topdown=False):
+                for name in files:
+                    os.remove(os.path.join(root, name))
+                for name in dirs:
+                    os.rmdir(os.path.join(root, name))
             os.rmdir(DUCKDB_SWAP)
             logger.info("Swap directory deleted.")
         except OSError:
@@ -31,16 +36,19 @@ def get_connection() -> duckdb.DuckDBPyConnection:
         logger.info("Connected to the database.")
         return conn
     except Exception:
-        logger.error("Error connecting to the database.")
+        logger.exception("Error connecting to the database.")
         raise
 
 
 def get_queries() -> list[str]:
     queries = []
-    for root, _, files in os.walk(QUERIES_PATH):
+    for root, dirs, files in os.walk(QUERIES_PATH):
+        dirs[:] = [d for d in dirs if not d.startswith("#")]
         for file in files:
-            if file.endswith(".sql") and not file.startswith("#"):
+            if not file.startswith("#") and file.endswith(".sql"):
                 queries.append(os.path.join(root, file))
+    if not queries:
+        logger.warning("No SQL queries found in the specified directory.")
     return queries
 
 

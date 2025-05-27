@@ -5,11 +5,12 @@ from codes import (
     # bolsa_familia,
     # prestacao_contas_anual_partidaria,
     # prestacao_de_contas_eleitorais_candidatos,
+    # candidatos,
     execute_sql
 )
 
 logger = getLogger()
-logger.setLevel("DEBUG")
+logger.setLevel("INFO")
 
 def main():
 
@@ -17,6 +18,7 @@ def main():
         # bolsa_familia,
         # prestacao_contas_anual_partidaria,
         # prestacao_de_contas_eleitorais_candidatos,
+        # candidatos,
         execute_sql
     ]
     for task in tasks:

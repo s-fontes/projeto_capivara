@@ -1,6 +1,10 @@
 import os
-from datetime import datetime
-from logging import getLogger, FileHandler, StreamHandler, Formatter
+from logging import getLogger, StreamHandler, Formatter
+from logging.handlers import RotatingFileHandler
+
+
+LOG_FOLDER = "./logs/"
+os.makedirs(LOG_FOLDER, exist_ok=True)
 
 logger = getLogger()
 
@@ -14,9 +18,12 @@ stream_formatter = Formatter(
 stream_handler.setFormatter(stream_formatter)
 logger.addHandler(stream_handler)
 
-LOG_FOLDER = "./logs/"
-log_file_name = f"{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
-file_handler = FileHandler(os.path.join(LOG_FOLDER, log_file_name))
+file_handler = RotatingFileHandler(
+    os.path.join(LOG_FOLDER, "app.log"),
+    maxBytes=10 * 1024 * 1024,  # 10 MB
+    backupCount=5,
+    encoding="utf-8"
+)
 file_formatter = Formatter(
     "%(asctime)s - %(levelname)s - [%(filename)s:%(lineno)s] - %(message)s"
 )
