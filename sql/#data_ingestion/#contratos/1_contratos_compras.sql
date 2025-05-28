@@ -1,5 +1,5 @@
 create
-or replace table main.contratos_comptras as
+or replace table main.contratos_compras as
 select
 	*
 from

@@ -6,10 +6,9 @@ logger = getLogger()
 
 DATABASE_PATH = "./database.db"
 QUERIES_PATH = "./sql"
-DUCKDB_SWAP = "./tmp/duckdb_swap"
+DUCKDB_SWAP = "./tmp/duckdb_swap.tmp/"
 
-conn = duckdb.connect(database=DATABASE_PATH, read_only=False)
-
+os.makedirs(os.path.dirname(DUCKDB_SWAP), exist_ok=True)
 
 def delete_swap_directory():
     if os.path.exists(DUCKDB_SWAP):
@@ -68,6 +67,7 @@ def get_max_priority(queries: list[str]) -> int:
         except ValueError:
             logger.warning(f"Invalid priority in query name: {query}")
     return max_priority
+
 
 def get_execution_order() -> list[list[str]]:
     queries = get_queries()

@@ -14,9 +14,9 @@ PATTERNS = [
     # Multiple spaces → single space (excluding newlines)
     (re.compile(r'[^\S\n]+'), ' '),
     # Decimals like "123,45" → "123.45"
-    (re.compile(r'(")(\d+),(\d+)(")'), r'\1\2.\3\4'),
+    (re.compile(r'(\")(\d+),(\d+)(\")'), r'\1\2.\3\4'),
     # Decimals like ",12" → "0.12"
-    (re.compile(r'(","?)(,)(\d+)("?)'), r'\g<1>0.\3\4'),
+    (re.compile(r'(\"),(\d+)(\")'), r'\g<1>0.\2\3')
 ]
 
 

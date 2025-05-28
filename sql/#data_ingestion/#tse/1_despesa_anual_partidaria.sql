@@ -6,7 +6,7 @@ from
 	read_csv (
 		'/home/fontes/Documentos/repos/projeto_capivara/data/prestacao_contas_anual_partidaria/raw/despesa_anual/*.csv',
 		delim = ";",
-		nullstr = "#NULO#",
+		nullstr = ["#NULO#", "#NULO"],
 		union_by_name = true,
 		null_padding = true,
 		normalize_names = true
