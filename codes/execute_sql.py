@@ -52,7 +52,6 @@ def get_queries() -> list[str]:
 
 
 def get_max_priority(queries: list[str]) -> int:
-
     max_priority = 0
     for query in queries:
         try:

@@ -1,5 +1,5 @@
--- create
--- or replace table flags.socio_bolsa_familia as
+create
+or replace table flags.socio_bolsa_familia as
 with
     bolsa_familia as (
         select

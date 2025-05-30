@@ -7,3 +7,4 @@ venv
 /tmp
 *.pyc
 *.db
+*.parquet

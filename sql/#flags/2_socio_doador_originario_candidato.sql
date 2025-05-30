@@ -1,5 +1,5 @@
--- create
--- or replace table flags.socio_doador_originario_candidato as
+create
+or replace table flags.socio_doador_originario_candidato as
 with
     doador_candidato as (
         select

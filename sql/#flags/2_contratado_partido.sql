@@ -4,7 +4,7 @@ with
     contratado_partido as (
         select
             nr_cpf_cnpj_fornecedor as cpf_cnpj,
-            sum(cast(vr_pagamento as decimal)) as total_pago
+            sum(cast(vr_pagamento as decimal)) as total_contratado
         from
             main.despesa_anual_partidaria
         group by
@@ -19,9 +19,9 @@ with
     )
 select
     cc.id,
-    coalesce(dcc.total_pago, 0) as total_pago,
+    coalesce(dcc.total_contratado, 0) as total_contratado,
     case
-        when dcc.total_pago > 0 then true
+        when dcc.total_contratado > 0 then true
         else false
     end as contratado_partido
 from
