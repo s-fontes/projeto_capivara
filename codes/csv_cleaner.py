@@ -20,14 +20,14 @@ PATTERNS = [
 ]
 
 
-def clean_csv(file_path: str) -> None:
+def clean_csv(file_path: str, source_encoding: str = "latin1", target_encoding: str = "utf-8") -> None:
     logger.info(f"Cleaning CSV file: {file_path}")
     temp_path = file_path + ".tmp"
 
     try:
         with (
-            open(file_path, "r", encoding="latin1") as infile,
-            open(temp_path, "w", encoding="utf-8") as tempfile
+            open(file_path, "r", encoding=source_encoding) as infile,
+            open(temp_path, "w", encoding=target_encoding) as tempfile
         ):
 
             for line in infile.readlines():
