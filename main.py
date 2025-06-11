@@ -3,12 +3,13 @@ from logging import getLogger
 
 from codes import (
     # bolsa_familia,
+    empresas,
     # prestacao_contas_anual_partidaria,
     # prestacao_de_contas_eleitorais_candidatos,
     # candidatos,
     # contratos_compras,
     # contratos_pncp,
-    execute_sql
+    # execute_sql
 )
 
 logger = getLogger()
@@ -19,12 +20,13 @@ def main():
 
     tasks = [
         # bolsa_familia,
+        empresas,
         # prestacao_contas_anual_partidaria,
         # prestacao_de_contas_eleitorais_candidatos,
         # candidatos,
         # contratos_compras,
         # contratos_pncp,
-        execute_sql
+        # execute_sql
     ]
     for task in tasks:
         try:

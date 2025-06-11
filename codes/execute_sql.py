@@ -95,7 +95,9 @@ def execute_queries(conn: duckdb.DuckDBPyConnection):
                 with open(query, "r") as file:
                     sql = file.read()
                 logger.info(f"Executing query: {query}")
-                conn.execute(sql)
+                resp = conn.execute(sql)
+                logger.info(resp.fetchall())
+                print(f"Query executed successfully: {query}")
                 logger.info(f"Query executed successfully: {query}")
             except Exception:
                 logger.exception(f"Error executing query {query}")
