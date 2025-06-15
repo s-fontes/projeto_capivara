@@ -151,7 +151,7 @@ def get_date_intervals(initial_date: datetime, final_date: datetime, date_window
     return intervals
 
 
-def main():
+def contratos_pncp():
     try:
         logger.info("Starting processing")
         initial_date = datetime(2021, 1, 1)
@@ -171,4 +171,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    contratos_pncp()

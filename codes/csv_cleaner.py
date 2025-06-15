@@ -3,7 +3,7 @@ import os
 import logging
 
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger()
 
 
 PATTERNS = [
@@ -16,7 +16,9 @@ PATTERNS = [
     # Decimals like "123,45" → "123.45"
     (re.compile(r'(\")(\d+),(\d+)(\")'), r'\1\2.\3\4'),
     # Decimals like ",12" → "0.12"
-    (re.compile(r'(\"),(\d+)(\")'), r'\g<1>0.\2\3')
+    (re.compile(r'(\"),(\d+)(\")'), r'\g<1>0.\2\3'),
+    # / -> ''
+    (re.compile(r'([\/])'), '')
 ]
 
 
@@ -43,7 +45,8 @@ def clean_csv(file_path: str, source_encoding: str = "latin1", target_encoding: 
 
         os.replace(temp_path, file_path)
         logger.info(
-            f"CSV file cleaned successfully: {file_path}")
+            f"CSV file cleaned successfully: {file_path}"
+        )
 
     except Exception:
         logger.exception(f"Error cleaning CSV file: {file_path}")

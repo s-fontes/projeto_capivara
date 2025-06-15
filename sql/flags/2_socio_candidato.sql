@@ -51,12 +51,11 @@ with
     )
 select
     cc.id,
-    coalesce(c.total_despesa, 0) as total_despesa,
-    coalesce(c.total_receita, 0) as total_receita,
-    c.nome,
+    sum(c.total_despesa) as total_despesa,
+    sum(c.total_receita) as total_receita,
     case
-        when c.total_despesa > 0
-        or c.total_receita > 0 then true
+        when sum(c.total_despesa) > 0
+        or sum(c.total_receita) > 0 then true
         else false
     end as socio_candidato
 from
@@ -65,3 +64,5 @@ from
     and cc.fornecedor_tipo = 'JURIDICA'
     left join candidatos as c on s.cpf_cnpj = c.cpf
     and s.nome = c.nome
+group by
+    cc.id

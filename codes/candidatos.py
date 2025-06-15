@@ -52,7 +52,7 @@ def extract_zip(zip_path: str) -> None:
         logger.exception(f"Error extracting {zip_path}")
 
 
-def main():
+def candidatos():
     logger.info("Starting extraction process")
     zip_files = [
         os.path.join(ZIP_FOLDER, filename)
@@ -65,4 +65,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    candidatos()

@@ -97,13 +97,12 @@ def execute_queries(conn: duckdb.DuckDBPyConnection):
                 logger.info(f"Executing query: {query}")
                 resp = conn.execute(sql)
                 logger.info(resp.fetchall())
-                print(f"Query executed successfully: {query}")
                 logger.info(f"Query executed successfully: {query}")
             except Exception:
                 logger.exception(f"Error executing query {query}")
 
 
-def main():
+def execute_sql():
     logger.info("Starting the SQL execution process...")
     conn = get_connection()
     try:
@@ -119,4 +118,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    execute_sql()

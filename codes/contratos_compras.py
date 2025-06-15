@@ -98,7 +98,7 @@ def process_page(page: Page) -> None:
         raise
 
 
-def main():
+def contratos_compras():
     try:
         logger.info("Starting processing")
         max_count = get_page(Page(0)).get("count")
@@ -121,4 +121,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    contratos_compras()

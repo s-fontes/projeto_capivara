@@ -1,4 +1,3 @@
-import codes.config_log
 from logging import getLogger
 
 from codes import (
@@ -9,8 +8,8 @@ from codes import (
     # candidatos,
     # contratos_compras,
     # contratos_pncp,
-    clean_all_csv_files,
-    # execute_sql
+    # clean_all_csv_files,
+    execute_sql
 )
 
 logger = getLogger()
@@ -27,8 +26,8 @@ def main():
         # candidatos,
         # contratos_compras,
         # contratos_pncp,
-        clean_all_csv_files,
-        # execute_sql
+        # clean_all_csv_files,
+        execute_sql
     ]
     for task in tasks:
         try:

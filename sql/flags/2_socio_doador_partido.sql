@@ -1,16 +1,16 @@
 create
-or replace table flags.socio_doador_originario_candidato as
+or replace table flags.socio_doador_partido as
 with
-    doador_candidato as (
+    doador_partido as (
         select
-            nr_cpf_cnpj_doador_originario[4:-3] as cpf_cnpj,
-            nfc_normalize (upper(strip_accents (trim(nm_doador_originario_rfb)))) as nome,
+            nr_cpf_cnpj_doador[4:-3] as cpf_cnpj,
+            nfc_normalize (upper(strip_accents (trim(nm_doador)))) as nome,
             sum(vr_receita) as total_doado
         from
-            main.receitas_candidatos_doador_originario
+            main.receita_anual_partidaria
         group by
-            nr_cpf_cnpj_doador_originario,
-            nfc_normalize (upper(strip_accents (trim(nm_doador_originario_rfb))))
+            nr_cpf_cnpj_doador,
+            nfc_normalize (upper(strip_accents (trim(nm_doador))))
     ),
     socio as (
         select
@@ -30,14 +30,16 @@ with
     )
 select
     cc.id,
-    coalesce(dc.total_doado, 0) as total_doado,
+    sum(dp.total_doado) as total_doado,
     case
-        when dc.total_doado > 0 then true
+        when sum(dp.total_doado) > 0 then true
         else false
-    end as socio_doador_originario_candidato
+    end as socio_doador_partido
 from
     contratos_compras as cc
     left join socio as s on cc.cpf_cnpj = s.cnpj
     and cc.fornecedor_tipo = 'JURIDICA'
-    left join doador_candidato as dc on s.cpf_cnpj = dc.cpf_cnpj
-    and s.nome = dc.nome
+    left join doador_partido as dp on s.cpf_cnpj = dp.cpf_cnpj
+    and s.nome = dp.nome
+group by
+    cc. id

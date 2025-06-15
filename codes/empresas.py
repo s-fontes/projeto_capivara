@@ -80,7 +80,7 @@ for task in tasks:
     logger.info(task)
 
 
-def main() -> None:
+def empresas() -> None:
     logger.info("starting extraction process")
     tasks = generate_tasks()
     logger.info(f"total tasks to run: {len(tasks)}")
@@ -96,4 +96,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     os.makedirs(DATA_FOLDER, exist_ok=True)
-    main()
+    empresas()

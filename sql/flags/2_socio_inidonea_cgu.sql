@@ -32,9 +32,9 @@ with
     )
 select
     cc.id,
-    coalesce(icgu.total_sancoes, 0) as total_sancoes,
+    sum(icgu.total_sancoes) as total_sancoes,
     case
-        when icgu.total_sancoes > 0 then true
+        when sum(icgu.total_sancoes) > 0 then true
         else false
     end as socio_inidonea_cgu
 from
@@ -43,3 +43,5 @@ from
     and cc.fornecedor_tipo = 'JURIDICA'
     left join inidonea_cgu as icgu on s.cpf_cnpj = cast(icgu.cpf_cnpj as varchar)
     and s.nome = icgu.nome
+group by
+    cc. id

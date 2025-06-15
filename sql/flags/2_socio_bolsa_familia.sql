@@ -28,9 +28,9 @@ with
     )
 select
     cc.id,
-    coalesce(bf.valor_total, 0) as valor_total,
+    sum(bf.valor_total) as valor_total,
     case
-        when bf.valor_total > 0 then true
+        when sum(bf.valor_total) > 0 then true
         else false
     end as socio_bolsa_familia
 from
@@ -39,3 +39,5 @@ from
     and cc.fornecedor_tipo = 'JURIDICA'
     left join bolsa_familia as bf on s.cpf_cnpj = bf.cpf
     and s.nome = bf.nome
+group by
+    cc.id
